@@ -15,8 +15,7 @@
         url: '/',
         templateUrl: './components/landingPage/landingPage.view.html'
       });
-
+    //Por el amor de Dios si tiene errores en los scrips comenten esto primero y luego corran el código
     $urlRouterProvider.otherwise('/');
-
   };
 })();

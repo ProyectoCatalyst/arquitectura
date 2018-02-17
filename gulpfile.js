@@ -3,6 +3,7 @@
 const gulp = require('gulp'),
       connect = require('gulp-connect'),
       nodemon = require('gulp-nodemon'),
+      todo = require('gulp-todo'),
       browserSync = require('browser-sync');
 
 gulp.task('connect', () => {
@@ -14,6 +15,12 @@ gulp.task('connect', () => {
   browserSync.init({
     server: './public'
   })
+});
+
+gulp.task('to-do', () =>{
+  gulp.src(['./public/**/**/**/**/*.js'])
+  .pipe(todo())
+  .pipe(gulp.dest('./'));
 });
 
 gulp.task('dependencies', () => {
@@ -64,8 +71,8 @@ gulp.task('watch', () => {
       './public/components/*.js',
       './public/components/**/*.js',
       './public/components/**/**/*.js'
-    ], ['reload'])
+    ], ['reload', 'to-do'])
     .on('change', browserSync.reload);
 });
 
-gulp.task('default', ['connect', 'dependencies', 'reload', 'watch']);
+gulp.task('default', ['connect', 'to-do', 'dependencies', 'reload', 'watch']);
